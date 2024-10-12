@@ -15,9 +15,7 @@ app.use(express.static(path.join(__dirname, "dist")))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: process.env.NODE_ENV === "development"
-        ? "http://localhost:5173"
-        : "https://link-short-2t2i.onrender.com",
+    origin: "http://localhost:5173",
     credentials: true
 }))
 
