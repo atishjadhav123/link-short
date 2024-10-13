@@ -71,8 +71,8 @@ exports.login = asyncHandler(async (req, res) => {
 
 })
 
-exports.logout = asyncHandler(async (req, res) => {
-    res.clearCookie("devAuth")
-    res.status(200).json({ meassage: "logout success" })
-})
+// exports.logout = asyncHandler(async (req, res) => {
+//     res.clearCookie("devAuth")
+//     res.status(200).json({ meassage: "logout success" })
+// })
 
