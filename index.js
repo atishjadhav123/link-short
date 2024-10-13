@@ -15,8 +15,8 @@ app.use(express.static(path.join(__dirname, "dist")))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: 'http://localhost:5173', // Your frontend URL
-    credentials: true, // Allows cookies to be sent with requests
+    origin: ['http://localhost:5173', 'https://link-short-2t2i.onrender.com'], // Adjust to your domains
+    credentials: true
 }));
 
 //routes

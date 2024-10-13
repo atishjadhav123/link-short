@@ -53,17 +53,22 @@ exports.login = asyncHandler(async (req, res) => {
         return res.status(400).json({ meassage: "password do not match" })
 
     }
-    const token = jwt.sign({ userId: result._id }, process.env.JWT_KEY, { expiresIn: "1d" })
-    res.cookie("devAuth", token, { maxAge: 3600000 * 6 })
-
+    const token = jwt.sign({ userId: result._id }, process.env.JWT_KEY, { expiresIn: "1d" });
+    res.cookie("devAuth", token, {
+        maxAge: 3600000 * 6, // 6 hours
+        httpOnly: true,      // Prevent JavaScript access
+        secure: process.env.NODE_ENV === "production", // Only over HTTPS in production
+        sameSite: "strict"   // Or "lax" depending on your needs
+    });
     return res.status(200).json({
-        meassage: "login success",
+        message: "login success",
         result: {
             name: result.name,
             email: result.email,
             role: result.role,
         }
-    })
+    });
+
 })
 
 exports.logout = asyncHandler(async (req, res) => {
