@@ -15,9 +15,9 @@ app.use(express.static(path.join(__dirname, "dist")))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://link-short-2t2i.onrender.com'], // Adjust to your domains
+    origin: true,
     credentials: true
-}));
+}))
 
 //routes
 app.use("/api/v1/auth", require("./routes/authRoute"))
@@ -25,8 +25,6 @@ app.use("/api/v1/url", require("./routes/urlRoutes"))
 app.use("/api/v1/user", userProtected, require("./routes/userRoutes"))
 app.use("/api/v1/admin", adminProtected, require("./routes/adminRoutes"))
 //server start
-
-app.options('*', cors());
 
 app.use("*", (req, res) => {
     res.status(404).json({ message: "Resource not found" })
